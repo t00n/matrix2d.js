@@ -38,11 +38,16 @@ function test_speed() {
 }
 
 function assertThrows(fn, exception) {
+	var good = false
 	try {
 		fn()
 	}
 	catch(err) {
 		console.assert(err === exception)
+		good = true
+	}
+	if (! good) {
+		throw fn + " did not throw " + exception
 	}
 }
 
