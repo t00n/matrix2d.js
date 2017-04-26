@@ -103,6 +103,10 @@ function test_map() {
 	var A = new Matrix2D([[[0, 0, 0]], [[255, 255, 255]]])
 	console.assert(A.map((x) => x[0] * 256 * 256 + x[1] * 256 + x[2]).equals([[0], [16777215]]))
 }
+function test_reverse_subtract() {
+	var A = new Matrix2D([[0, 9], [1, 3]])
+	console.assert(A.reverse_subtract(5).equals([[5, -4], [4, 2]]))
+}
 test_element_wise()
 test_scalar()
 test_wrong_shape()
@@ -110,5 +114,6 @@ test_dispatch()
 test_equals()
 test_unary()
 test_map()
+test_reverse_subtract()
 
 // test_speed()

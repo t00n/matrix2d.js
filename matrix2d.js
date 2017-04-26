@@ -162,6 +162,10 @@ class Matrix2D {
 		return this._unary_operation(this._negate)
 	}
 
+	reverse_subtract(other) {
+		return this.negate().add(other)
+	}
+
 	map(fn) {
 		return this._unary_operation(fn)
 	}
