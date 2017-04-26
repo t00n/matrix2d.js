@@ -161,6 +161,10 @@ class Matrix2D {
 	negate() {
 		return this._unary_operation(this._negate)
 	}
+
+	map(fn) {
+		return this._unary_operation(fn)
+	}
 }
 
 module.exports = Matrix2D
