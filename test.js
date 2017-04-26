@@ -87,9 +87,16 @@ function test_dispatch() {
 	assertThrows(() => A.add(true), "Error: operation not available between Matrix2D and true")
 	assertThrows(() => A.add(null), "Error: operation not available between Matrix2D and null")
 }
+function test_equals() {
+	var A = new Matrix2D([[0, 1, 2], [2, 3, 4]])
+	console.assert(A.add([[0, 1, 2], [2, 3, 4]]))
+	console.assert(A.equals([[0, 1, 2], [2, 3, 5]]) == false)
+	assertThrows(() => A.equals([[0], [1]]), "Error: matrices do not have the same shape")
+}
 test_element_wise()
 test_scalar()
 test_wrong_shape()
 test_dispatch()
+test_equals()
 
 // test_speed()
