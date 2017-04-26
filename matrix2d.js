@@ -94,6 +94,19 @@ class Matrix2D {
 		return new Matrix2D(res)
 	}
 
+	_unary_operation(op) {
+		var res = []
+		for (var i = 0; i < this.shape[0]; ++i)
+		{
+			res.push([])
+			for (var j = 0; j < this.shape[1]; ++j)
+			{
+				res[i].push(op(this.data[i][j]))
+			}
+		}
+		return new Matrix2D(res)
+	}
+
 	_plus(a, b) {
 		return a + b
 	}
@@ -112,6 +125,10 @@ class Matrix2D {
 
 	_equals(a, b) {
 		return a === b
+	}
+
+	_negate(a) {
+		return -a
 	}
 
 	add(other) {
@@ -139,6 +156,10 @@ class Matrix2D {
 		var res = meta_op(this._equals, other)
 		if (res)
 			return res.data.every((row) => row.every((cell) => cell))
+	}
+
+	negate() {
+		return this._unary_operation(this._negate)
 	}
 }
 

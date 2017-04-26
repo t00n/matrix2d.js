@@ -93,10 +93,17 @@ function test_equals() {
 	console.assert(A.equals([[0, 1, 2], [2, 3, 5]]) == false)
 	assertThrows(() => A.equals([[0], [1]]), "Error: matrices do not have the same shape")
 }
+function test_unary() {
+	var A = new Matrix2D([[0, 9], [1, 3]])
+	console.assert(A.negate().equals([[-0, -9], [-1, -3]]))
+	var B = new Matrix2D([[-4, 2], [3, -7]])
+	console.assert(B.negate().equals([[4, -2], [-3, 7]]))
+}
 test_element_wise()
 test_scalar()
 test_wrong_shape()
 test_dispatch()
 test_equals()
+test_unary()
 
 // test_speed()
