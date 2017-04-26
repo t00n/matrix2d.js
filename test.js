@@ -102,6 +102,8 @@ function test_unary() {
 function test_map() {
 	var A = new Matrix2D([[[0, 0, 0]], [[255, 255, 255]]])
 	console.assert(A.map((x) => x[0] * 256 * 256 + x[1] * 256 + x[2]).equals([[0], [16777215]]))
+	var B = new Matrix2D([[[1, 1, 1]], [[254, 254, 254]]])
+	console.log(A.map((x, y) => x.concat(y), B))
 }
 function test_reverse_subtract() {
 	var A = new Matrix2D([[0, 9], [1, 3]])

@@ -166,8 +166,13 @@ class Matrix2D {
 		return this.negate().add(other)
 	}
 
-	map(fn) {
-		return this._unary_operation(fn)
+	map(fn, other) {
+		if (!other) {
+			return this._unary_operation(fn)
+		}
+		else {
+			return this._element_wise_operation(fn, other)
+		}
 	}
 }
 
