@@ -1,3 +1,4 @@
+// Array.equals from http://stackoverflow.com/a/14853974
 // Warn if overriding existing method
 if(Array.prototype.equals)
     console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
@@ -28,9 +29,9 @@ Array.prototype.equals = function (array) {
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
-class Matrix {
+class Matrix2D {
 	constructor(data) {
-		if (data instanceof Matrix)
+		if (data instanceof Matrix2D)
 		{
 			this.data = data.data
 			this.shape = data.shape
@@ -41,7 +42,7 @@ class Matrix {
 				|| ! data[0].length
 				|| data.some((row) => row.length !== data[0].length))
 			{
-				throw "Error: Matrix constructor: wrong shape"
+				throw "Error: Matrix2D constructor: wrong shape"
 			}
 			this.data = data
 			this.shape = [data.length, data[0].length]
@@ -52,19 +53,19 @@ class Matrix {
 	}
 
 	_dispatch_scalarity(other) {
-		if (other instanceof Array || other instanceof Matrix) {
+		if (other instanceof Array || other instanceof Matrix2D) {
 			return this._element_wise_operation
 		}
 		else if (typeof other === "number") {
 			return this._scalar_operation
 		}
 		else {
-			throw "Error: operation not available between Matrix and " + other
+			throw "Error: operation not available between Matrix2D and " + other
 		}
 	}
 
 	_element_wise_operation(op, other) {
-		other = new Matrix(other)
+		other = new Matrix2D(other)
 		if (! other.shape.equals(this.shape)) {
 			throw "Error: matrices do not have the same shape"
 		}
@@ -77,7 +78,7 @@ class Matrix {
 				res[i].push(op(this.data[i][j], other.data[i][j]))
 			}
 		}
-		return new Matrix(res)
+		return new Matrix2D(res)
 	}
 
 	_scalar_operation(op, other) {
@@ -90,7 +91,7 @@ class Matrix {
 				res[i].push(op(this.data[i][j], other))
 			}
 		}
-		return new Matrix(res)
+		return new Matrix2D(res)
 	}
 
 	_plus(a, b) {
@@ -141,4 +142,4 @@ class Matrix {
 	}
 }
 
-module.exports = Matrix
+module.exports = Matrix2D
