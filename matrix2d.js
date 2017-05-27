@@ -40,6 +40,33 @@ Number.prototype.add = function(other) {
 	}
 }
 
+Number.prototype.subtract = function(other) {
+	if (other instanceof Matrix2D) {
+		return other.reverse_subtract(this+0)
+	}
+	else {
+		return this - other
+	}
+}
+
+Number.prototype.multiply = function(other) {
+	if (other instanceof Matrix2D) {
+		return other.multiply(this+0)
+	}
+	else {
+		return this * other
+	}
+}
+
+Number.prototype.divide = function(other) {
+	if (other instanceof Matrix2D) {
+		return other.reverse_divide(this+0)
+	}
+	else {
+		return this / other
+	}
+}
+
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
@@ -178,6 +205,10 @@ class Matrix2D {
 
 	reverse_subtract(other) {
 		return this.negate().add(other)
+	}
+
+	reverse_divide(other) {
+		return this.map((x) => other / x)
 	}
 
 	map(fn, other) {

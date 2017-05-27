@@ -109,10 +109,18 @@ function test_reverse_subtract() {
 	var A = new Matrix2D([[0, 9], [1, 3]])
 	console.assert(A.reverse_subtract(5).equals([[5, -4], [4, 2]]))
 }
+function test_reverse_divide() {
+	var A = new Matrix2D([[1, 2], [2, 3]])
+	var b = 5
+	console.log(A.reverse_divide(b))
+}
 function test_numeric_ops() {
 	var a = 5
 	var B = new Matrix2D([[0, 1], [2, 3]])
 	console.assert(a.add(B).equals([[5, 6], [7, 8]]))
+	console.assert(a.subtract(B).equals([[5, 4], [3, 2]]))
+	console.assert(a.multiply(B).equals([[0, 5], [10, 15]]))
+	console.assert(a.divide(B).equals([[Infinity, 5], [2.5, 1.6666666666666667]]))
 }
 test_element_wise()
 test_scalar()
@@ -122,6 +130,7 @@ test_equals()
 test_unary()
 test_map()
 test_reverse_subtract()
+test_reverse_divide()
 test_numeric_ops()
 
 // test_speed()
