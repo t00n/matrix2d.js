@@ -165,7 +165,12 @@ class Matrix2D {
 	}
 
 	_equals(a, b) {
-		return a === b
+		if (a.equals) {
+			return a.equals(b)
+		}
+		else {
+			return a === b
+		}
 	}
 
 	_negate(a) {

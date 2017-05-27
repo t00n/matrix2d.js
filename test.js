@@ -103,7 +103,8 @@ function test_map() {
 	var A = new Matrix2D([[[0, 0, 0]], [[255, 255, 255]]])
 	console.assert(A.map((x) => x[0] * 256 * 256 + x[1] * 256 + x[2]).equals([[0], [16777215]]))
 	var B = new Matrix2D([[[1, 1, 1]], [[254, 254, 254]]])
-	console.log(A.map((x, y) => x.concat(y), B))
+	console.assert(A.map((x, y) => x.concat(y), B).equals([[[0, 0, 0, 1, 1, 1]], 
+                                                        [[255, 255, 255, 254, 254, 254]]]))
 }
 function test_reverse_subtract() {
 	var A = new Matrix2D([[0, 9], [1, 3]])
@@ -112,7 +113,7 @@ function test_reverse_subtract() {
 function test_reverse_divide() {
 	var A = new Matrix2D([[1, 2], [2, 3]])
 	var b = 5
-	console.log(A.reverse_divide(b))
+	console.assert(A.reverse_divide(b).equals([[5, 2.5], [2.5, 1.6666666666666667]]))
 }
 function test_numeric_ops() {
 	var a = 5
