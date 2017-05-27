@@ -26,6 +26,20 @@ Array.prototype.equals = function (array) {
     }       
     return true;
 }
+
+if (Number.prototype.add) {
+	console.warn("Overriding existing numeric.prototype.add")
+}
+
+Number.prototype.add = function(other) {
+	if (other instanceof Matrix2D) {
+		return other.add(this+0)
+	}
+	else {
+		return this + other
+	}
+}
+
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 

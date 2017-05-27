@@ -109,6 +109,11 @@ function test_reverse_subtract() {
 	var A = new Matrix2D([[0, 9], [1, 3]])
 	console.assert(A.reverse_subtract(5).equals([[5, -4], [4, 2]]))
 }
+function test_numeric_ops() {
+	var a = 5
+	var B = new Matrix2D([[0, 1], [2, 3]])
+	console.assert(a.add(B).equals([[5, 6], [7, 8]]))
+}
 test_element_wise()
 test_scalar()
 test_wrong_shape()
@@ -117,5 +122,6 @@ test_equals()
 test_unary()
 test_map()
 test_reverse_subtract()
+test_numeric_ops()
 
 // test_speed()
